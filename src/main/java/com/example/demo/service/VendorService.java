@@ -6,7 +6,7 @@ import java.util.List;
 public interface VendorService {
     VendorEntity postData(VendorEntity stu);
     List<VendorEntity> getAllData();
-    StudentEntity getData(int id);
-    StudentEntity updateData(int id, StudentEntity entity);
-    String deleteData(int id);
+    VendorEntity getData(int id);
+    VendorEntity updateData(int id, VendorEntity entity);
+    Vendor deleteData(int id);
 }
