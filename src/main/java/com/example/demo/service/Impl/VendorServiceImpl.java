@@ -22,7 +22,7 @@ public class VendorServiceImpl implements VendorService {
     }
 
     @Override
-    public List<VEntity> getAllData() {
+    public List<VendorEntity> getAllData() {
         return VendorRepository.findAll();
     }
 
