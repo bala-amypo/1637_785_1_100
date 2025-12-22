@@ -1,23 +1,23 @@
 package com.example.demo.controller;
 
-import com.example.demo.entity.StudentEntity;
-import com.example.demo.service.StudentService;
+import com.example.demo.entity.VendortEntity;
+import com.example.demo.service.VendorService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/students")
-public class StudentController {
+public class VendorController {
 
-    private final StudentService service;
+    private final VendorService service;
 
-    public StudentController(StudentService service) {
+    public StudentController(VendorService service) {
         this.service = service;
     }
 
     @PostMapping
-    public StudentEntity save(@RequestBody StudentEntity stu) {
+    public VendorEntity save(@RequestBody StudentEntity stu) {
         return service.postData(stu);
     }
 
