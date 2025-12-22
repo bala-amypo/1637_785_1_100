@@ -1,24 +1,24 @@
 package com.example.demo.service.impl;
 
-import com.example.demo.entity.StudentEntity;
-import com.example.demo.repository.StudentRepository;
-import com.example.demo.service.StudentService;
+import com.example.demo.entity.VendorEntity;
+import com.example.demo.repository.VendorRepository;
+import com.example.demo.service.VendorService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class StudentServiceImpl implements StudentService {
+public class VendorServiceImpl implements VendorService {
 
-    private final StudentRepository studentRepository;
+    private final VendorRepository VendorRepository;
 
-    public StudentServiceImpl(StudentRepository studentRepository) {
+    public VendorServiceImpl(VendorRepository VendorRepository) {
         this.studentRepository = studentRepository;
     }
 
     @Override
-    public StudentEntity postData(StudentEntity stu) {
-        return studentRepository.save(stu);
+    public VendorEntity postData(VendorEntity stu) {
+        return vendorRepository.save(stu);
     }
 
     @Override
