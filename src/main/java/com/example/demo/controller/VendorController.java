@@ -7,12 +7,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/students")
+@RequestMapping("/vendor")
 public class VendorController {
 
     private final VendorService service;
 
-    public StudentController(VendorService service) {
+    public VendorController(VendorService service) {
         this.service = service;
     }
 
