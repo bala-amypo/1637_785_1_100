@@ -4,21 +4,18 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "users")
-public class User {
+public class Vendor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String fullName;
-
     @Column(unique = true)
+    private String vendorName;
+
     private String email;
-
-    private String password;
-
-    private String role = "USER";
+    private String phone;
+    private String industry;
 
     private LocalDateTime createdAt;
 
@@ -27,5 +24,5 @@ public class User {
         createdAt = LocalDateTime.now();
     }
 
-
+    // getters and setters
 }
