@@ -1,43 +1,31 @@
 package com.example.demo.controller;
 
-import com.example.demo.entity.VendortEntity;
-import com.example.demo.service.VendorService;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import com.example.demo.entity.VendorEntity;
+import com.example.demo.service.VendorService;
 
 @RestController
 @RequestMapping("/vendor")
 public class VendorController {
 
-    private final VendorService service;
+    @Autowired
+    private VendorService service;
 
-    public VendorController(VendorService service) {
-        this.service = service;
+    @PostMapping("/save")
+    public VendorEntity saveVendor(@RequestBody VendorEntity vendor) {
+        return service.saveVendor(vendor);
     }
 
-    @PostMapping
-    public VendorEntity save(@RequestBody VendorEntity stu) {
-        return service.postData(stu);
-    }
-
-    @GetMapping
-    public List<VendorEntity> getAll() {
-        return service.getAllData();
+    @GetMapping("/all")
+    public List<VendorEntity> getAllVendors() {
+        return service.getAllVendors();
     }
 
     @GetMapping("/{id}")
-    public VendorEntity getById(@PathVariable int id) {
-        return service.getData(id);
-    }
-
-    @PutMapping("/{id}")
-    public VendorEntity update(@PathVariable int id, @RequestBody VendorEntity stu) {
-        return service.updateData(id, stu);
-    }
-
-    @DeleteMapping("/{id}")
-    public String delete(@PathVariable int id) {
-        return service.deleteData(id);
+    public VendorEntity getVendor(@PathVariable int id) {
+        return service.getVendorById(id);
     }
 }

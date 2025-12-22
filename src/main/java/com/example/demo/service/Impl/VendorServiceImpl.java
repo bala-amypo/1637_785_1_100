@@ -1,48 +1,29 @@
-package com.example.demo.service.impl;
-
-import com.example.demo.entity.VendorEntity;
-import com.example.demo.repository.VendorRepository;
-import com.example.demo.service.VendorService;
-import org.springframework.stereotype.Service;
+package com.example.demo.service;
 
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import com.example.demo.entity.VendorEntity;
+import com.example.demo.repository.VendorRepository;
 
 @Service
 public class VendorServiceImpl implements VendorService {
 
-    private final VendorRepository VendorRepository;
+    @Autowired
+    private VendorRepository repo;
 
-    public VendorServiceImpl(VendorRepository VendorRepository) {
-        this.VendorRepository = VendorRepository;
+    @Override
+    public VendorEntity saveVendor(VendorEntity vendor) {
+        return repo.save(vendor);
     }
 
     @Override
-    public VendorEntity postData(VendorEntity stu) {
-        return VendorRepository.save(stu);
+    public List<VendorEntity> getAllVendors() {
+        return repo.findAll();
     }
 
     @Override
-    public List<VendorEntity> getAllData() {
-        return VendorRepository.findAll();
-    }
-
-    @Override
-    public VendorEntity getData(int id) {
-        return VendorRepository.findById(id).orElse(null);
-    }
-
-    @Override
-    public VendorEntity updateData(int id, VendorEntity entity) {
-        if (VendorRepository.existsById(id)) {
-            entity.setId(id);
-            return VendorRepository.save(entity);
-        }
-        return null;
-    }
-
-    @Override
-    public String deleteData(int id) {
-        VendorRepository.deleteById(id);
-        return "Deleted Successfully";
+    public VendorEntity getVendorById(int id) {
+        return repo.findById(id).orElse(null);
     }
 }
