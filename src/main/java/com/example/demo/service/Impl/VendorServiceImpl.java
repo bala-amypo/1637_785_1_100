@@ -13,36 +13,36 @@ public class VendorServiceImpl implements VendorService {
     private final VendorRepository VendorRepository;
 
     public VendorServiceImpl(VendorRepository VendorRepository) {
-        this.studentRepository = studentRepository;
+        this.VendorRepository = VendorRepository;
     }
 
     @Override
     public VendorEntity postData(VendorEntity stu) {
-        return vendorRepository.save(stu);
+        return VendorRepository.save(stu);
     }
 
     @Override
     public List<StudentEntity> getAllData() {
-        return studentRepository.findAll();
+        return VendorRepository.findAll();
     }
 
     @Override
     public StudentEntity getData(int id) {
-        return studentRepository.findById(id).orElse(null);
+        return VendorRepository.findById(id).orElse(null);
     }
 
     @Override
-    public StudentEntity updateData(int id, StudentEntity entity) {
-        if (studentRepository.existsById(id)) {
+    public VendorEntity updateData(int id, VendorEntity entity) {
+        if (VendorRepository.existsById(id)) {
             entity.setId(id);
-            return studentRepository.save(entity);
+            return VendorRepository.save(entity);
         }
         return null;
     }
 
     @Override
     public String deleteData(int id) {
-        studentRepository.deleteById(id);
+        VendorRepository.deleteById(id);
         return "Deleted Successfully";
     }
 }
