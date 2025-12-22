@@ -31,5 +31,4 @@ public class VendorDocument {
         isValid = (expiryDate == null || expiryDate.isAfter(LocalDate.now()));
     }
 
-    // getters and setters
 }

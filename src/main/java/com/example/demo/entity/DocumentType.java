@@ -26,5 +26,5 @@ public class DocumentType {
         createdAt = LocalDateTime.now();
     }
 
-    // getters and setters
+    
 }

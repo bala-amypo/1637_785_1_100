@@ -24,5 +24,5 @@ public class Vendor {
         createdAt = LocalDateTime.now();
     }
 
-    // getters and setters
+    
 }
