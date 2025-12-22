@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import java.util.Date;
 
 @Entity
-public class StudentEntity {
+public class VendorEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,9 +15,9 @@ public class StudentEntity {
     private String password;
     private Date created;
 
-    public StudentEntity() {}
+    public VendorEntity() {}
 
-    public StudentEntity(Integer id, String name, String email, String password, Date created) {
+    public VendorEntity(Integer id, String name, String email, String password, Date created) {
         this.id = id;
         this.name = name;
         this.email = email;

@@ -17,22 +17,22 @@ public class VendorController {
     }
 
     @PostMapping
-    public VendorEntity save(@RequestBody StudentEntity stu) {
+    public VendorEntity save(@RequestBody VendorEntity stu) {
         return service.postData(stu);
     }
 
     @GetMapping
-    public List<StudentEntity> getAll() {
+    public List<VendorEntity> getAll() {
         return service.getAllData();
     }
 
     @GetMapping("/{id}")
-    public StudentEntity getById(@PathVariable int id) {
+    public VendorEntity getById(@PathVariable int id) {
         return service.getData(id);
     }
 
     @PutMapping("/{id}")
-    public StudentEntity update(@PathVariable int id, @RequestBody StudentEntity stu) {
+    public VendorEntity update(@PathVariable int id, @RequestBody VendorEntity stu) {
         return service.updateData(id, stu);
     }
 
