@@ -1,11 +1,17 @@
-package com.example.demo.service;
+package com.example.demo.security;
 
-import java.util.List;
-import com.example.demo.entity.User;
+import com.example.demo.model.User;
+import com.example.demo.service.UserService;
 
-public interface UserService {
+public class CustomerUserDetailsService {
 
-    User saveUser(User user);
+    private final UserService userService;
 
-    List<User> getAllUsers();
+    public CustomerUserDetailsService(UserService userService) {
+        this.userService = userService;
+    }
+
+    public User loadUserByUsername(String email) {
+        return userService.findByEmail(email);
+    }
 }
