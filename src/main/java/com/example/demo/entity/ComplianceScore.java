@@ -1,26 +1,32 @@
-package com.example.demo.model;
+package com.example.demo.entt;
 
 import jakarta.persistence.*;
 
 @Entity
 public class ComplianceScore {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private double score;
 
-    private double scoreValue;
-    private String rating;
+    public ComplianceScore() {}
 
-    @ManyToOne
-    private Vendor vendor;
+    public ComplianceScore(Long id, double score) {
+        this.id = id;
+        this.score = score;
+    }
 
-    public double getScoreValue() { return scoreValue; }
-    public void setScoreValue(double scoreValue) { this.scoreValue = scoreValue; }
+    public Long getId() {
+        return id;
+    }
 
-    public String getRating() { return rating; }
-    public void setRating(String rating) { this.rating = rating; }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    public Vendor getVendor() { return vendor; }
-    public void setVendor(Vendor vendor) { this.vendor = vendor; }
+    public double getScore() {
+        return score;
+    }
+
+    public void setScore(double score) {
+        this.score = score;
+    }
 }
