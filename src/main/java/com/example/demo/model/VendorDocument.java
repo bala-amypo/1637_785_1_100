@@ -12,12 +12,21 @@ public class VendorDocument {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String documentName;
-    private String documentType;
+    private Long vendorId;          // add this
+    private Long documentTypeId;    // add this
+    private String documentName;    // keep existing
+    private String documentType;    // keep existing
 
-    // getters and setters
+    // Getters and Setters
+
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
+
+    public Long getVendorId() { return vendorId; }
+    public void setVendorId(Long vendorId) { this.vendorId = vendorId; }
+
+    public Long getDocumentTypeId() { return documentTypeId; }
+    public void setDocumentTypeId(Long documentTypeId) { this.documentTypeId = documentTypeId; }
 
     public String getDocumentName() { return documentName; }
     public void setDocumentName(String documentName) { this.documentName = documentName; }
