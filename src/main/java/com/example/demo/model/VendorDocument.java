@@ -6,7 +6,7 @@ public class VendorDocument {
     private Long documentTypeId;
     private String fileName;
 
-    // Add getters and setters
+  
     public Long getVendorId() {
         return vendorId;
     }
