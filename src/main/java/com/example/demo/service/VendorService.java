@@ -1,11 +1,8 @@
 package com.example.demo.service;
 
-import java.util.List;
-import com.example.demo.entity.VendorEntity;
+import com.example.demo.model.Vendor;
 
 public interface VendorService {
-
-    VendorEntity saveVendor(VendorEntity vendor);
-    List<VendorEntity> getAllVendors();
-    VendorEntity getVendorById(int id);
+    Vendor createVendor(Vendor vendor);
+    Vendor getVendor(Long id);
 }
