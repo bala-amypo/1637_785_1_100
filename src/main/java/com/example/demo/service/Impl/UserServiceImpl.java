@@ -1,31 +1,30 @@
 package com.example.demo.service.impl;
 
-import com.example.demo.model.User;
-import com.example.demo.repository.UserRepository;
-import com.example.demo.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.demo.model.Vendor;
+import com.example.demo.service.VendorService;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
+import java.util.ArrayList;
+import java.util.List;
 
-@Service
-public class UserServiceImpl implements UserService {
+@Service  // THIS IS CRUCIAL
+public class VendorServiceImpl implements VendorService {
 
-    @Autowired
-    private UserRepository userRepository;
+    private final List<Vendor> vendors = new ArrayList<>();
 
     @Override
-    public User save(User user) {
-        return userRepository.save(user);
+    public Vendor findById(Long id) {
+        return vendors.stream().filter(v -> v.getId().equals(id)).findFirst().orElse(null);
     }
 
     @Override
-    public Optional<User> findById(Long id) {
-        return userRepository.findById(id);
+    public List<Vendor> findAll() {
+        return vendors;
     }
 
     @Override
-    public Optional<User> findByEmail(String email) {
-        return userRepository.findByEmail(email);
+    public Vendor save(Vendor vendor) {
+        vendors.add(vendor);
+        return vendor;
     }
 }
