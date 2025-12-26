@@ -1,7 +1,9 @@
-package com.example.demo.entity;
+package com.example.demo.model;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class DocumentType {
@@ -10,21 +12,28 @@ public class DocumentType {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true)
-    private String typeName;
-
-    private String description;
-
-    private boolean required;
-
     private int weight;
+    private boolean required;
 
     private LocalDateTime createdAt;
 
+    @ManyToMany(mappedBy = "supportedDocumentTypes")
+    private Set<Vendor> vendors = new HashSet<>();
+
     @PrePersist
-    public void onCreate() {
+    public void prePersist() {
         createdAt = LocalDateTime.now();
     }
 
-    
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+
+    public int getWeight() { return weight; }
+    public void setWeight(int weight) { this.weight = weight; }
+
+    public boolean getRequired() { return required; }
+    public void setRequired(boolean required) { this.required = required; }
+
+    public Set<Vendor> getVendors() { return vendors; }
+    public LocalDateTime getCreatedAt() { return createdAt; }
 }
