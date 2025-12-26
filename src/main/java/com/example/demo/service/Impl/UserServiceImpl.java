@@ -1,26 +1,42 @@
-package com.example.demo.controller;
+package com.example.demo.service.impl;
 
+import com.example.demo.exception.ResourceNotFoundException;
 import com.example.demo.model.User;
+import com.example.demo.repository.UserRepository;
 import com.example.demo.service.UserService;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
-@RestController
-@RequestMapping("/users")
-public class UserController {
+public class UserServiceImpl implements UserService {
 
-    private final UserService service;
+    private final UserRepository repository;
+    private final PasswordEncoder passwordEncoder;
 
-    public UserController(UserService service) {
-        this.service = service;
+    public UserServiceImpl(UserRepository repository,
+                           PasswordEncoder passwordEncoder) {
+        this.repository = repository;
+        this.passwordEncoder = passwordEncoder;
     }
 
-    @PostMapping
-    public User register(@RequestBody User user) {
-        return service.registerUser(user);
+    @Override
+    public User registerUser(User user) {
+        if (repository.existsByEmail(user.getEmail())) {
+            throw new IllegalArgumentException("Email already used");
+        }
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        return repository.save(user);
     }
 
-    @GetMapping("/{id}")
-    public User get(@PathVariable Long id) {
-        return service.getById(id);
+    @Override
+    public User findByEmail(String email) {
+        return repository.findByEmail(email)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("User not found"));
+    }
+
+    @Override
+    public User getById(Long id) {
+        return repository.findById(id)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("User not found"));
     }
 }
