@@ -8,3 +8,4 @@ public class DocumentTypeServiceImpl implements DocumentTypeService {
     public DocumentTypeServiceImpl(DocumentTypeRepository repository) {
     }
 }
+A
