@@ -18,9 +18,12 @@ public class VendorDocumentServiceImpl implements VendorDocumentService {
     }
 
     @Override
-    public VendorDocument uploadDocument(Long vendorId, Long documentTypeId, VendorDocument doc) {
-        repository.setVendorId(vendorId);
-        repository.setDocumentTypeId(documentTypeId);
-        return repository.save(doc);
-    }
+@Override
+public VendorDocument uploadDocument(Long vendorId, Long documentTypeId, VendorDocument doc) {
+    doc.setVendorId(vendorId);  // Add this setter to VendorDocument
+    doc.setDocumentTypeId(documentTypeId);
+    return repository.save(doc);
+}
+
+
 }
