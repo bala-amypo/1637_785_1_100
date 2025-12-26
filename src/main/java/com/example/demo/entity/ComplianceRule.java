@@ -20,7 +20,10 @@ public class ComplianceRule {
         createdAt = LocalDateTime.now();
     }
 
+    public Long getId() { return id; }
+    public String getRuleName() { return ruleName; }
     public void setRuleName(String ruleName) { this.ruleName = ruleName; }
+    public String getMatchType() { return matchType; }
     public void setMatchType(String matchType) { this.matchType = matchType; }
     public double getThreshold() { return threshold; }
     public LocalDateTime getCreatedAt() { return createdAt; }
