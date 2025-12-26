@@ -1,21 +1,14 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.ComplianceRule;
 import com.example.demo.service.ComplianceRuleService;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/compliance-rules")
 public class ComplianceRuleController {
 
-    private final ComplianceRuleService service;
+    private final ComplianceRuleService complianceRuleService;
 
-    public ComplianceRuleController(ComplianceRuleService service) {
-        this.service = service;
-    }
-
-    @PostMapping
-    public ComplianceRule create(@RequestBody ComplianceRule rule) {
-        return service.save(rule);
+    public ComplianceRuleController(ComplianceRuleService complianceRuleService) {
+        this.complianceRuleService = complianceRuleService;
     }
 }
