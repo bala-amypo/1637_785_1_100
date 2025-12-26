@@ -20,7 +20,7 @@ public class VendorDocument {
     private Long documentTypeId;
     private String documentName;
 
-    // ADD THESE GETTERS/SETTERS
+    
     public Long getDocumentTypeId() { return documentTypeId; }
     public void setDocumentTypeId(Long documentTypeId) { this.documentTypeId = documentTypeId; }
     
