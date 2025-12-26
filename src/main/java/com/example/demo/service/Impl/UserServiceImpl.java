@@ -1,30 +1,29 @@
 package com.example.demo.service.impl;
 
-import com.example.demo.model.Vendor;
-import com.example.demo.service.VendorService;
+import com.example.demo.model.User;
+import com.example.demo.service.UserService;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Optional;
 
-@Service  // THIS IS CRUCIAL
-public class VendorServiceImpl implements VendorService {
-
-    private final List<Vendor> vendors = new ArrayList<>();
+@Service
+public class UserServiceImpl implements UserService {
 
     @Override
-    public Vendor findById(Long id) {
-        return vendors.stream().filter(v -> v.getId().equals(id)).findFirst().orElse(null);
+    public Optional<User> findById(Long id) {
+        // implement logic here
+        return Optional.empty();
     }
 
     @Override
-    public List<Vendor> findAll() {
-        return vendors;
+    public Optional<User> findByEmail(String email) {
+        // implement logic here
+        return Optional.empty();
     }
 
     @Override
-    public Vendor save(Vendor vendor) {
-        vendors.add(vendor);
-        return vendor;
+    public User save(User user) {
+        // implement logic here (e.g., repository.save(user))
+        return user;
     }
 }
