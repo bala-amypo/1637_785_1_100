@@ -1,27 +1,21 @@
 package com.example.demo.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-import java.util.List;
-
 import com.example.demo.model.User;
-
-import com.example.demo.repository.UserRepository;
+import com.example.demo.service.UserService;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/users")
 public class UserController {
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserService service;
 
-    @PostMapping("/save")
-    public User saveUser(@RequestBody User user) {
-        return userRepository.save(user);
+    public UserController(UserService service) {
+        this.service = service;
     }
 
-    @GetMapping("/all")
-    public List<User> getAllUsers() {
-        return userRepository.findAll();
+    @PostMapping
+    public User create(@RequestBody User user) {
+        return service.save(user);
     }
 }
