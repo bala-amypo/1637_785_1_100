@@ -17,5 +17,10 @@ public class VendorDocumentServiceImpl implements VendorDocumentService {
         return repository.findById(id).orElse(null);
     }
 
-    // implement other methods from the interface if any
+    @Override
+    public VendorDocument uploadDocument(Long vendorId, Long documentTypeId, VendorDocument doc) {
+        doc.setVendorId(vendorId);
+        doc.setDocumentTypeId(documentTypeId);
+        return repository.save(doc);
+    }
 }
