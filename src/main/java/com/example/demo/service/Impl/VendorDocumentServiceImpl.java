@@ -1,7 +1,21 @@
-package com.example.demo.service.Impl;
+package com.example.demo.service.impl;
 
+import com.example.demo.model.VendorDocument;
+import com.example.demo.repository.VendorDocumentRepository;
 import com.example.demo.service.VendorDocumentService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class VendorDocumentServiceImpl implements VendorDocumentService {
-    // minimal placeholder implementation
+
+    @Autowired
+    private VendorDocumentRepository repository;
+
+    @Override
+    public VendorDocument getDocument(Long id) {
+        return repository.findById(id).orElse(null);
+    }
+
+    // implement other methods from the interface if any
 }
