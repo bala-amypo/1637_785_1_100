@@ -4,9 +4,11 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 import lombok.Data;
 import lombok.AllArgsConstructor;
-import lombok.NoArgs
+import lombok.NoArgsConstructor;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 public class ComplianceRule {
 

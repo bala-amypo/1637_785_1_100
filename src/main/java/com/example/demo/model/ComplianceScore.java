@@ -1,7 +1,13 @@
 package com.example.demo.model;
 
 import jakarta.persistence.*;
+import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 public class ComplianceScore {
 
@@ -15,13 +21,5 @@ public class ComplianceScore {
     @ManyToOne
     private Vendor vendor;
 
-    // getters/setters
-    public double getScoreValue() { return scoreValue; }
-    public void setScoreValue(double scoreValue) { this.scoreValue = scoreValue; }
-
-    public String getRating() { return rating; }
-    public void setRating(String rating) { this.rating = rating; }
-
-    public Vendor getVendor() { return vendor; }
-    public void setVendor(Vendor vendor) { this.vendor = vendor; }
+   
 }
