@@ -4,6 +4,9 @@ import com.example.demo.model.*;
 import com.example.demo.repository.*;
 import com.example.demo.exception.ResourceNotFoundException;
 import java.time.LocalDate;
+import org.springframework.stereotype.Service;
+
+@Service
 
 public class VendorDocumentServiceImpl {
 

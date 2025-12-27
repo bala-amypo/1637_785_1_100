@@ -6,7 +6,9 @@ import com.example.demo.exception.ResourceNotFoundException;
 import com.example.demo.util.ComplianceScoringEngine;
 
 import java.util.List;
+import org.springframework.stereotype.Service;
 
+@Service
 public class ComplianceScoreServiceImpl {
 
     private final VendorRepository vendorRepo;
