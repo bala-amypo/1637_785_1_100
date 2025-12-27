@@ -1,34 +1,26 @@
 package com.example.demo.model;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
-
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
-
+import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import com.example.demo.model.Vendor;
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "document_types")
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
-@ToString(exclude = "vendors")
 public class DocumentType {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @EqualsAndHashCode.Include
     private Long id;
 
     private int weight;
-    private boolean required;
+    private Boolean required;
 
     private LocalDateTime createdAt;
 
@@ -39,10 +31,10 @@ public class DocumentType {
     public void prePersist() {
         createdAt = LocalDateTime.now();
     }
+public void addVendor(Vendor vendor) {
+    this.vendors.add(vendor);
+    vendor.getSupportedDocumentTypes().add(this);
+}
 
-    // 🔑 helper method
-    public void addVendor(Vendor vendor) {
-        this.vendors.add(vendor);
-        vendor.getSupportedDocumentTypes().add(this);
-    }
+  
 }
