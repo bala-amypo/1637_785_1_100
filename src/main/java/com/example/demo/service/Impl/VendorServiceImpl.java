@@ -1,32 +1,23 @@
 package com.example.demo.service.impl;
 
 import com.example.demo.model.Vendor;
-import com.example.demo.service.VendorService;
-import org.springframework.stereotype.Service;
-import java.util.ArrayList;
-import java.util.List;
+import com.example.demo.repository.VendorRepository;
+import com.example.demo.exception.ResourceNotFoundException;
 
-@Service
-public class VendorServiceImpl implements VendorService {
+public class VendorServiceImpl {
 
-    private final List<Vendor> vendors = new ArrayList<>();
+    private final VendorRepository repo;
 
-    @Override
-    public Vendor createVendor(Vendor vendor) {
-        vendors.add(vendor);
-        return vendor;
+    public VendorServiceImpl(VendorRepository repo) {
+        this.repo = repo;
     }
 
-    @Override
+    public Vendor createVendor(Vendor v) {
+        return repo.save(v);
+    }
+
     public Vendor getVendor(Long id) {
-        return vendors.stream()
-                      .filter(v -> v.getId().equals(id))
-                      .findFirst()
-                      .orElse(null);
-    }
-
-    @Override
-    public List<Vendor> findAll() {
-        return vendors;
+        return repo.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Vendor not found"));
     }
 }

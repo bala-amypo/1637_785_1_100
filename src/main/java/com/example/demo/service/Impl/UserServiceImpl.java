@@ -1,29 +1,34 @@
 package com.example.demo.service.impl;
 
 import com.example.demo.model.User;
-import com.example.demo.service.UserService;
-import org.springframework.stereotype.Service;
+import com.example.demo.repository.UserRepository;
+import com.example.demo.exception.ResourceNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
-import java.util.Optional;
+public class UserServiceImpl {
 
-@Service
-public class UserServiceImpl implements UserService {
+    private final UserRepository repo;
+    private final PasswordEncoder encoder;
 
-    @Override
-    public Optional<User> findById(Long id) {
-       
-        return Optional.empty();
+    public UserServiceImpl(UserRepository repo, PasswordEncoder encoder) {
+        this.repo = repo;
+        this.encoder = encoder;
     }
 
-    @Override
-    public Optional<User> findByEmail(String email) {
-       
-        return Optional.empty();
+    public User registerUser(User u) {
+        if (repo.existsByEmail(u.getEmail()))
+            throw new IllegalArgumentException("Email already used");
+        u.setPassword(encoder.encode(u.getPassword()));
+        return repo.save(u);
     }
 
-    @Override
-    public User save(User user) {
-       
-        return user;
+    public User findByEmail(String email) {
+        return repo.findByEmail(email)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
+    }
+
+    public User getById(Long id) {
+        return repo.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
     }
 }
