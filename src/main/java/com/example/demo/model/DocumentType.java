@@ -20,7 +20,7 @@ public class DocumentType {
     private Long id;
 
     private int weight;
-    private boolean required;
+    private Boolean required;
 
     private LocalDateTime createdAt;
 
