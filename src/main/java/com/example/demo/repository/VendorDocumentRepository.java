@@ -6,5 +6,6 @@ import java.util.*;
 import com.example.demo.model.*;
 public interface VendorDocumentRepository extends JpaRepository<VendorDocument, Long> {
     List<VendorDocument> findByVendor(Vendor vendor);
-    List<VendorDocument> findExpiredDocuments(LocalDate date);
+     @Query("SELECT v FROM VendorDocument v WHERE v.expiryDate < :date")
+    List<VendorDocument> findExpiredDocuments(@Param("date") LocalDate date);
 }
