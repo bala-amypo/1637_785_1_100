@@ -7,9 +7,10 @@ import com.example.demo.util.ComplianceScoringEngine;
 
 import java.util.List;
 import org.springframework.stereotype.Service;
+import com.example.demo.service.ComplianceScoreService;
 
 @Service
-public class ComplianceScoreServiceImpl {
+public class ComplianceScoreServiceImpl implements ComplianceScoreService{
 
     private final VendorRepository vendorRepo;
     private final DocumentTypeRepository docTypeRepo;

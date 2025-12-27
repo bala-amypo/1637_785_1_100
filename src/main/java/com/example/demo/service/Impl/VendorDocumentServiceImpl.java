@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 
-public class VendorDocumentServiceImpl {
+public class VendorDocumentServiceImpl implements VenderDocumentService {
 
     private final VendorDocumentRepository repo;
     private final VendorRepository vendorRepo;
