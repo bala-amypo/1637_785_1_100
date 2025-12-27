@@ -10,7 +10,7 @@ public class DemoApplication {
         SpringApplication.run(DemoApplication.class, args);
         System.out.println(new BCryptPasswordEncoder().encode("monesh"));
 		BCryptPasswordEncoder encoder=new BCryptPasswordEncoder();
-		if(encoder.matches("monesh", "$2a$10$qTNOcEcfXwcrwZ6uP0jVY.GfpVS97EXU7MBYVZ7FPT9RrFNUo/n9O")){
+		if(encoder.matches("12345", "$2a$10$3yukPPEIHM0HFIn9MPyr2.93syOlOl.iWhy/a3BFMxGUgPG6RWu7W")){
 			System.out.println("password matched");
 		}else{
 			System.out.println("no match");
