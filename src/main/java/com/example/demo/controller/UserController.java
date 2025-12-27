@@ -2,18 +2,30 @@ package com.example.demo.controller;
 
 import com.example.demo.model.User;
 import com.example.demo.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/users")
 public class UserController {
 
-    @Autowired
-    private UserService userService;
+    private final UserService service;
 
-    @PostMapping
-    public User saveUser(@RequestBody User user) {
-        return userService.save(user);
+    public UserController(UserService service) {
+        this.service = service;
+    }
+
+    @PostMapping("/register")
+    public User register(@RequestBody User user) {
+        return service.registerUser(user);
+    }
+
+    @GetMapping("/{id}")
+    public User getById(@PathVariable Long id) {
+        return service.getById(id);
+    }
+
+    @GetMapping("/email/{email}")
+    public User getByEmail(@PathVariable String email) {
+        return service.findByEmail(email);
     }
 }

@@ -5,7 +5,7 @@ import com.example.demo.service.VendorDocumentService;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/documents")
+@RequestMapping("/vendor-documents")
 public class VendorDocumentController {
 
     private final VendorDocumentService service;
@@ -14,10 +14,17 @@ public class VendorDocumentController {
         this.service = service;
     }
 
-    @PostMapping("/{vendorId}/{typeId}")
-    public VendorDocument upload(@PathVariable Long vendorId,
-                                 @PathVariable Long typeId,
-                                 @RequestBody VendorDocument doc) {
-        return service.uploadDocument(vendorId, typeId, doc);
+    @PostMapping("/upload/{vendorId}/{documentTypeId}")
+    public VendorDocument upload(
+            @PathVariable Long vendorId,
+            @PathVariable Long documentTypeId,
+            @RequestBody VendorDocument document) {
+
+        return service.uploadDocument(vendorId, documentTypeId, document);
+    }
+
+    @GetMapping("/{id}")
+    public VendorDocument get(@PathVariable Long id) {
+        return service.getDocument(id);
     }
 }
