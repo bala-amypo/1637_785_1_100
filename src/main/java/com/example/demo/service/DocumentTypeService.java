@@ -1,19 +1,7 @@
-package com.example.demo.service.impl;
+package com.example.demo.service;
 
 import com.example.demo.model.DocumentType;
-import com.example.demo.repository.DocumentTypeRepository;
-import com.example.demo.service.DocumentTypeService;
 
-public class DocumentTypeServiceImpl implements DocumentTypeService {
-
-    private final DocumentTypeRepository repository;
-
-    public DocumentTypeServiceImpl(DocumentTypeRepository repository) {
-        this.repository = repository;
-    }
-
-    @Override
-    public DocumentType save(DocumentType documentType) {
-        return repository.save(documentType);
-    }
+public interface DocumentTypeService {
+    DocumentType save(DocumentType documentType);
 }
