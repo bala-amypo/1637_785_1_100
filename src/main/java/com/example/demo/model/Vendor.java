@@ -1,28 +1,32 @@
 package com.example.demo.model;
 
 import jakarta.persistence.*;
-import java.time.LocalDateTime;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
 import java.util.HashSet;
 import java.util.Set;
-import lombok.Data;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import com.example.demo.model.DocumentType;
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
+
 @Entity
 @Table(name = "vendors")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@ToString(exclude = "supportedDocumentTypes")
 public class Vendor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EqualsAndHashCode.Include
     private Long id;
 
-    private String vendorName;
-    private String industry;
-
-    private LocalDateTime createdAt;
+    private String name;
 
     @ManyToMany
     @JoinTable(
@@ -32,13 +36,9 @@ public class Vendor {
     )
     private Set<DocumentType> supportedDocumentTypes = new HashSet<>();
 
-    @PrePersist
-    public void prePersist() {
-        createdAt = LocalDateTime.now();
+    // 🔑 helper method (MANDATORY)
+    public void addDocumentType(DocumentType documentType) {
+        this.supportedDocumentTypes.add(documentType);
+        documentType.getVendors().add(this);
     }
-public void addDocumentType(DocumentType documentType) {
-    this.supportedDocumentTypes.add(documentType);
-    documentType.getVendors().add(this);
-}
-
 }
