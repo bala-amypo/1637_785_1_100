@@ -7,7 +7,7 @@ import java.util.Set;
 import lombok.Data;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-
+import com.example.demo.model.DocumentType;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
