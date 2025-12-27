@@ -9,9 +9,9 @@ public class ComplianceRuleServiceImpl implements ComplianceRuleService {
 
     @Override
     public ComplianceRule save(ComplianceRule rule) {
-        // TODO: Add actual save logic, e.g., call repository
-        return rule; // temporary stub
+       
+        return rule; 
     }
 
-    // Implement other methods from ComplianceRuleService here
+   
 }

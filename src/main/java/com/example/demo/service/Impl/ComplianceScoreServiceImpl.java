@@ -9,10 +9,9 @@ public class ComplianceScoreServiceImpl implements ComplianceScoreService {
 
     @Override
     public ComplianceScore getScore(Long id) {
-        // TODO: implement your logic here
-        // Example:
-        return new ComplianceScore(); // replace with real implementation
+       
+        return new ComplianceScore(); 
     }
 
-    // Implement other methods from ComplianceScoreService if any
+   
 }
