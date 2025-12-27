@@ -5,10 +5,10 @@ import com.example.demo.repository.*;
 import com.example.demo.exception.ResourceNotFoundException;
 import java.time.LocalDate;
 import org.springframework.stereotype.Service;
-
+import com.example.demo.service.VendorDocumentService;
 @Service
 
-public class VendorDocumentServiceImpl implements VenderDocumentService {
+public class VendorDocumentServiceImpl implements VendorDocumentService {
 
     private final VendorDocumentRepository repo;
     private final VendorRepository vendorRepo;

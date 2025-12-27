@@ -4,9 +4,9 @@ import com.example.demo.model.Vendor;
 import com.example.demo.repository.VendorRepository;
 import com.example.demo.exception.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
-
+import com.example.demo.service.VendorService;
 @Service
-public class VendorServiceImpl {
+public class VendorServiceImpl implements VendorService{
 
     private final VendorRepository repo;
 
