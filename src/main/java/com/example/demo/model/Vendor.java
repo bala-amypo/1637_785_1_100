@@ -19,6 +19,11 @@ public class Vendor {
     private LocalDateTime createdAt;
 
     @ManyToMany
+    @JoinTable(
+        name = "vendor_document_types",
+        joinColumns = @JoinColumn(name = "vendor_id"),
+        inverseJoinColumns = @JoinColumn(name = "document_type_id")
+    )
     private Set<DocumentType> supportedDocumentTypes = new HashSet<>();
 
     @PrePersist
@@ -26,6 +31,7 @@ public class Vendor {
         createdAt = LocalDateTime.now();
     }
 
+    // getters/setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 

@@ -1,55 +1,27 @@
 package com.example.demo.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.JoinColumn;
+import jakarta.persistence.*;
 
 @Entity
 public class ComplianceScore {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;  // primary key
+    private Long id;
 
-    private double score;
+    private double scoreValue;
+    private String rating;
 
     @ManyToOne
-    @JoinColumn(name = "vendor_id")
     private Vendor vendor;
 
-    public ComplianceScore() {}
+    // getters/setters
+    public double getScoreValue() { return scoreValue; }
+    public void setScoreValue(double scoreValue) { this.scoreValue = scoreValue; }
 
-    public ComplianceScore(Long id, double score) {
-        this.id = id;
-        this.score = score;
-    }
+    public String getRating() { return rating; }
+    public void setRating(String rating) { this.rating = rating; }
 
-    // Existing getters/setters...
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public double getScore() {
-        return score;
-    }
-
-    public void setScore(double score) {
-        this.score = score;
-    }
-
-    // ADD THESE for vendor
-    public Vendor getVendor() {
-        return vendor;
-    }
-
-    public void setVendor(Vendor vendor) {
-        this.vendor = vendor;
-    }
+    public Vendor getVendor() { return vendor; }
+    public void setVendor(Vendor vendor) { this.vendor = vendor; }
 }

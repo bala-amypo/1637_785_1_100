@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@Table(name = "document_types")
 public class DocumentType {
 
     @Id
@@ -25,6 +26,7 @@ public class DocumentType {
         createdAt = LocalDateTime.now();
     }
 
+    // getters/setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
@@ -35,5 +37,4 @@ public class DocumentType {
     public void setRequired(boolean required) { this.required = required; }
 
     public Set<Vendor> getVendors() { return vendors; }
-    public LocalDateTime getCreatedAt() { return createdAt; }
 }

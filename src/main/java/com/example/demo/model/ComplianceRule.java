@@ -12,19 +12,17 @@ public class ComplianceRule {
 
     private String ruleName;
     private String matchType;
-    private double threshold = 0.0;
+    private Double threshold = 0.0;
     private LocalDateTime createdAt;
 
     @PrePersist
     public void prePersist() {
         createdAt = LocalDateTime.now();
+        if (threshold == null) threshold = 0.0;
     }
 
-    public Long getId() { return id; }
-    public String getRuleName() { return ruleName; }
+    // getters/setters
     public void setRuleName(String ruleName) { this.ruleName = ruleName; }
-    public String getMatchType() { return matchType; }
     public void setMatchType(String matchType) { this.matchType = matchType; }
-    public double getThreshold() { return threshold; }
-    public LocalDateTime getCreatedAt() { return createdAt; }
+    public Double getThreshold() { return threshold; }
 }
