@@ -2,7 +2,11 @@ package com.example.demo.model;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
+import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.NoArgs
 
+@Data
 @Entity
 public class ComplianceRule {
 
@@ -21,8 +25,4 @@ public class ComplianceRule {
         if (threshold == null) threshold = 0.0;
     }
 
-    // getters/setters
-    public void setRuleName(String ruleName) { this.ruleName = ruleName; }
-    public void setMatchType(String matchType) { this.matchType = matchType; }
-    public Double getThreshold() { return threshold; }
 }
