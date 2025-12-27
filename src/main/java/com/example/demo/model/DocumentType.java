@@ -2,7 +2,6 @@ package com.example.demo.model;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
-3=
 import java.util.HashSet;
 import java.util.Set;
 import lombok.Data;
