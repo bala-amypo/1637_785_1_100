@@ -11,19 +11,19 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Optional<User> findById(Long id) {
-        // implement logic here
+       
         return Optional.empty();
     }
 
     @Override
     public Optional<User> findByEmail(String email) {
-        // implement logic here
+       
         return Optional.empty();
     }
 
     @Override
     public User save(User user) {
-        // implement logic here (e.g., repository.save(user))
+       
         return user;
     }
 }
