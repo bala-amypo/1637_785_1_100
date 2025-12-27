@@ -36,5 +36,9 @@ public class Vendor {
     public void prePersist() {
         createdAt = LocalDateTime.now();
     }
+public void addDocumentType(DocumentType documentType) {
+    this.supportedDocumentTypes.add(documentType);
+    documentType.getVendors().add(this);
+}
 
 }

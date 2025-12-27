@@ -7,7 +7,7 @@ import java.util.Set;
 import lombok.Data;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-
+import com.example.demo.model.Vendor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -31,6 +31,10 @@ public class DocumentType {
     public void prePersist() {
         createdAt = LocalDateTime.now();
     }
+public void addVendor(Vendor vendor) {
+    this.vendors.add(vendor);
+    vendor.getSupportedDocumentTypes().add(this);
+}
 
   
 }
