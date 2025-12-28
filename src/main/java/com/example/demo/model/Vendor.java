@@ -31,7 +31,7 @@ public class Vendor {
         createdAt = LocalDateTime.now();
     }
     
-    // Getters and Setters
+  
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
     
@@ -49,19 +49,19 @@ public class Vendor {
         this.supportedDocumentTypes = supportedDocumentTypes; 
     }
     
-    // Proper equals and hashCode
+   
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Vendor vendor = (Vendor) o;
         
-        // If both have IDs, compare by ID
+       
         if (id != null && vendor.id != null) {
             return Objects.equals(id, vendor.id);
         }
         
-        // Otherwise, use reference equality for non-persisted objects
+        
         return super.equals(o);
     }
     
@@ -70,7 +70,7 @@ public class Vendor {
         if (id != null) {
             return Objects.hash(id);
         }
-        // For non-persisted objects, use identity hash code
+       
         return System.identityHashCode(this);
     }
     
