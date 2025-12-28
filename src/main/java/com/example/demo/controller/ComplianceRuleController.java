@@ -4,6 +4,7 @@ import com.example.demo.model.ComplianceRule;
 import com.example.demo.service.ComplianceRuleService;
 import org.springframework.web.bind.annotation.*;
 
+
 @RestController
 @RequestMapping("/compliance-rules")
 public class ComplianceRuleController {
