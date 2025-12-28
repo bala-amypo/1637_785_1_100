@@ -38,7 +38,6 @@ public class Vendor {
     }
 
 
-    private Set<DocumentType> supportedDocumentTypes = new HashSet<>();
 
     @ManyToMany
     private List<DocumentType> supportedDocumentTypes = new ArrayList<>();
