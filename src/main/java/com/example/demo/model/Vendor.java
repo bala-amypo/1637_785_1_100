@@ -41,5 +41,14 @@ public void addDocumentType(DocumentType documentType) {
     documentType.getVendors().add(this);
 }
 
-
+@ManyToMany
+    private Set<DocumentType> supportedDocumentTypes = new HashSet<>();
+    
+    // Or if it's a List
+    @ManyToMany
+    private List<DocumentType> supportedDocumentTypes = new ArrayList<>();
+    
+    public Set<DocumentType> getSupportedDocumentTypes() {
+        return supportedDocumentTypes;
+    }
 }
