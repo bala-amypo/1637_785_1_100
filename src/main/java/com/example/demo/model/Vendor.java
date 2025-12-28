@@ -36,15 +36,10 @@ public class Vendor {
     public void prePersist() {
         createdAt = LocalDateTime.now();
     }
-public void addDocumentType(DocumentType documentType) {
-    this.supportedDocumentTypes.add(documentType);
-    documentType.getVendors().add(this);
-}
 
-@ManyToMany
+
     private Set<DocumentType> supportedDocumentTypes = new HashSet<>();
-    
-    // Or if it's a List
+
     @ManyToMany
     private List<DocumentType> supportedDocumentTypes = new ArrayList<>();
     
