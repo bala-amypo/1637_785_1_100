@@ -49,22 +49,29 @@ public class Vendor {
         this.supportedDocumentTypes = supportedDocumentTypes; 
     }
     
-    // Proper equals and hashCode for Set to work correctly
+    // Proper equals and hashCode
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Vendor vendor = (Vendor) o;
-        // Compare all fields that determine uniqueness
-        return Objects.equals(id, vendor.id) &&
-               Objects.equals(vendorName, vendor.vendorName) &&
-               Objects.equals(industry, vendor.industry);
-               // Don't compare createdAt or supportedDocumentTypes
+        
+        // If both have IDs, compare by ID
+        if (id != null && vendor.id != null) {
+            return Objects.equals(id, vendor.id);
+        }
+        
+        // Otherwise, use reference equality for non-persisted objects
+        return super.equals(o);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(id, vendorName, industry);
+        if (id != null) {
+            return Objects.hash(id);
+        }
+        // For non-persisted objects, use identity hash code
+        return System.identityHashCode(this);
     }
     
     @Override
