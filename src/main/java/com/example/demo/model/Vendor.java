@@ -2,33 +2,20 @@ package com.example.demo.model;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import lombok.Data;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import lombok.EqualsAndHashCode;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.Objects;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
 @Table(name = "vendors")
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)  // Only include fields marked with @EqualsAndHashCode.Include
 public class Vendor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @EqualsAndHashCode.Include  // Explicitly include this field
     private Long id;
 
-    @EqualsAndHashCode.Include  // Explicitly include this field
     private String vendorName;
-    
-    @EqualsAndHashCode.Include  // Explicitly include this field
     private String industry;
-
-    @EqualsAndHashCode.Include  // Explicitly include this field
     private LocalDateTime createdAt;
 
     @ManyToMany
@@ -37,10 +24,55 @@ public class Vendor {
         joinColumns = @JoinColumn(name = "vendor_id"),
         inverseJoinColumns = @JoinColumn(name = "document_type_id")
     )
-    private List<DocumentType> supportedDocumentTypes = new ArrayList<>();  // This field is NOT included in equals/hashCode
+    private Set<DocumentType> supportedDocumentTypes = new HashSet<>();
 
     @PrePersist
     public void prePersist() {
         createdAt = LocalDateTime.now();
+    }
+    
+    // Getters and Setters
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+    
+    public String getVendorName() { return vendorName; }
+    public void setVendorName(String vendorName) { this.vendorName = vendorName; }
+    
+    public String getIndustry() { return industry; }
+    public void setIndustry(String industry) { this.industry = industry; }
+    
+    public LocalDateTime getCreatedAt() { return createdAt; }
+    public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
+    
+    public Set<DocumentType> getSupportedDocumentTypes() { return supportedDocumentTypes; }
+    public void setSupportedDocumentTypes(Set<DocumentType> supportedDocumentTypes) { 
+        this.supportedDocumentTypes = supportedDocumentTypes; 
+    }
+    
+    // Proper equals and hashCode for Set to work correctly
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Vendor vendor = (Vendor) o;
+        // Compare all fields that determine uniqueness
+        return Objects.equals(id, vendor.id) &&
+               Objects.equals(vendorName, vendor.vendorName) &&
+               Objects.equals(industry, vendor.industry);
+               // Don't compare createdAt or supportedDocumentTypes
+    }
+    
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, vendorName, industry);
+    }
+    
+    @Override
+    public String toString() {
+        return "Vendor{" +
+               "id=" + id +
+               ", vendorName='" + vendorName + '\'' +
+               ", industry='" + industry + '\'' +
+               '}';
     }
 }
