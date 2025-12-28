@@ -6,7 +6,7 @@ import java.util.*;
 import lombok.Data;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-import com.example.demo.model.Vendor;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -23,38 +23,33 @@ public class DocumentType {
 
     private LocalDateTime createdAt;
 
+    @ManyToMany(mappedBy = "supportedDocumentTypes")
+    private List<Vendor> vendors = new ArrayList<>();  // Changed from Set to List
+
     @PrePersist
     public void prePersist() {
         createdAt = LocalDateTime.now();
     }
     
-    @ManyToMany(mappedBy = "supportedDocumentTypes")
-    private Set<Vendor> vendors = new HashSet<>();
-    
-    // Fix hashCode() to avoid infinite recursion
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, description, weight, required, expirationPeriodMonths);
-        // DON'T include 'vendors' in hashCode() to avoid circular reference!
+    public void addVendor(Vendor vendor) {
+        this.vendors.add(vendor);
+        vendor.getSupportedDocumentTypes().add(this);
     }
     
+    // Override equals and hashCode to avoid infinite recursion
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         DocumentType that = (DocumentType) o;
-        return Double.compare(weight, that.weight) == 0 &&
-               required == that.required &&
-               expirationPeriodMonths == that.expirationPeriodMonths &&
+        return weight == that.weight &&
                Objects.equals(id, that.id) &&
-               Objects.equals(name, that.name) &&
-               Objects.equals(description, that.description);
-        // DON'T compare 'vendors' in equals() either!
+               Objects.equals(required, that.required) &&
+               Objects.equals(createdAt, that.createdAt);
     }
-public void addVendor(Vendor vendor) {
-    this.vendors.add(vendor);
-    vendor.getSupportedDocumentTypes().add(this);
-}
-
-  
+    
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, weight, required, createdAt);
+    }
 }
