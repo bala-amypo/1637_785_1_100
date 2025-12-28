@@ -3,8 +3,7 @@ package com.example.demo.model;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 import java.util.HashSet;
-import java.util.Set;
-import java.util.List;
+import java.util.*;
 import lombok.Data;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -37,11 +36,6 @@ public class Vendor {
     public void prePersist() {
         createdAt = LocalDateTime.now();
     }
-
-
-
-    @ManyToMany
-    private List<DocumentType> supportedDocumentTypes = new ArrayList<>();
     
     public Set<DocumentType> getSupportedDocumentTypes() {
         return supportedDocumentTypes;
