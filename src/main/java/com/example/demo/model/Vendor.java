@@ -4,25 +4,31 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import lombok.Data;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import lombok.EqualsAndHashCode;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "vendors")
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)  // Only include fields marked with @EqualsAndHashCode.Include
 public class Vendor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EqualsAndHashCode.Include  // Explicitly include this field
     private Long id;
 
+    @EqualsAndHashCode.Include  // Explicitly include this field
     private String vendorName;
+    
+    @EqualsAndHashCode.Include  // Explicitly include this field
     private String industry;
 
+    @EqualsAndHashCode.Include  // Explicitly include this field
     private LocalDateTime createdAt;
 
     @ManyToMany
@@ -31,27 +37,10 @@ public class Vendor {
         joinColumns = @JoinColumn(name = "vendor_id"),
         inverseJoinColumns = @JoinColumn(name = "document_type_id")
     )
-    private List<DocumentType> supportedDocumentTypes = new ArrayList<>();  // Changed from Set to List
+    private List<DocumentType> supportedDocumentTypes = new ArrayList<>();  // This field is NOT included in equals/hashCode
 
     @PrePersist
     public void prePersist() {
         createdAt = LocalDateTime.now();
-    }
-    
-    // Override equals and hashCode to avoid infinite recursion
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Vendor vendor = (Vendor) o;
-        return Objects.equals(id, vendor.id) &&
-               Objects.equals(vendorName, vendor.vendorName) &&
-               Objects.equals(industry, vendor.industry) &&
-               Objects.equals(createdAt, vendor.createdAt);
-    }
-    
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, vendorName, industry, createdAt);
     }
 }
