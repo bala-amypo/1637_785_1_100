@@ -25,7 +25,7 @@ public class DocumentType {
     private LocalDateTime createdAt;
 
     @ManyToMany(mappedBy = "supportedDocumentTypes")
-    private Set<Vendor> vendors = new HashSet<>();
+    private List<Vendor> vendors = new ArrayList<>();
 
     @PrePersist
     public void prePersist() {
