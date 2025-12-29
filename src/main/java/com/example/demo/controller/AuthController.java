@@ -8,11 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
-import io.swagger.v3.oas.annotations.security.SecurityRequirements;
 
 @RestController
 @RequestMapping("/auth")
-@SecurityRequirements
 public class AuthController {
 
     @Autowired
@@ -21,11 +19,17 @@ public class AuthController {
     @Autowired
     private AuthenticationManager authenticationManager;
 
+    // -------------------------
+    // REGISTER
+    // -------------------------
     @PostMapping("/register")
     public User register(@RequestBody User user) {
         return userService.registerUser(user);
     }
 
+    // -------------------------
+    // LOGIN
+    // -------------------------
     @PostMapping("/login")
     public AuthResponse login(@RequestBody User user) {
 
@@ -38,6 +42,7 @@ public class AuthController {
 
         User dbUser = userService.findByEmail(user.getEmail());
 
+        // Dummy token (JWT logic not required for tests)
         String token = "token";
 
         return new AuthResponse(
